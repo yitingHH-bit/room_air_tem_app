@@ -14,11 +14,11 @@ const char* WIFI_PASS = "hjc198902165399";
 DHT dht(DHT_PIN, DHT_TYPE);
 ESP8266WebServer server(80);
 
-// ---- 网页面板（放全局 + PROGMEM）----
+// ----（+ PROGMEM）----
 static const char INDEX_HTML[] PROGMEM = R"HTML(
 <!doctype html><html lang="zh"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ESP8266 温湿度</title>
+<title>ESP8266 Temperature and Humidity</title>
 <style>
   :root{--bd:#e5e7eb;--tx:#111827;--mut:#6b7280}
   body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
@@ -33,35 +33,35 @@ static const char INDEX_HTML[] PROGMEM = R"HTML(
   button{padding:8px 12px;border-radius:10px;border:1px solid var(--bd);background:#fafafa;cursor:pointer}
 </style>
 <div class="card">
-  <h1>ESP8266 温湿度面板</h1>
+  <h1>ESP8266 Temperature and Humidity Panel</h1>
   <div class="row">
-    <div class="tile"><div>温度</div><div id="t" class="big">--.- °C</div></div>
-    <div class="tile"><div>湿度</div><div id="h" class="big">--.- %</div></div>
+    <div class="tile"><div>Temperature</div><div id="t" class="big">--.- °C</div></div>
+    <div class="tile"><div>Humidity</div><div id="h" class="big">--.- %</div></div>
   </div>
   <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-    <div id="status" class="mut">等待更新…</div>
-    <button onclick="refresh()">立即刷新</button>
+    <div id="status" class="mut">wait update…</div>
+    <button onclick="refresh()">instant fresh</button>
   </div>
 </div>
 <script>
 async function refresh(){
   const s=document.getElementById('status');
   try{
-    s.textContent='获取中…';
+    s.textContent='getting…';
     const r=await fetch('/api/metrics',{cache:'no-store'});
     if(!r.ok) throw new Error('HTTP '+r.status);
     const j=await r.json();
     document.getElementById('t').textContent=j.temp_c.toFixed(2)+' °C';
     document.getElementById('h').textContent=j.humidity.toFixed(1)+' %';
-    s.textContent='最后更新：'+new Date().toLocaleTimeString();
-  }catch(e){ s.textContent='读取失败：'+e.message; }
+    s.textContent='last update：'+new Date().toLocaleTimeString();
+  }catch(e){ s.textContent='read fail：'+e.message; }
 }
 setInterval(refresh, 2500);
 refresh();
 </script>
 )HTML";
 
-// ---- 读取封装（NaN 保护）----
+// ---- ----
 static float readTempC()    { float t = dht.readTemperature(); return isnan(t)?NAN:t; }
 static float readHumidity() { float h = dht.readHumidity();    return isnan(h)?NAN:h; }
 
