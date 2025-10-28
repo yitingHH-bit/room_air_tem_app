@@ -3,3 +3,4 @@
 
 web_page：http://192.168.0.106/  
 JSON：http://192.168.0.106/api/metrics  
+upload_port = COM[6]
