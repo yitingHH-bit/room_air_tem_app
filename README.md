@@ -1,6 +1,14 @@
 # room_air_tem_app
-![WhatsApp 图像2025-09-27于20 37 57_a06b3124](https://github.com/user-attachments/assets/5450bb0c-cf59-47ed-956d-d7c8174b4fc5)
+protocal:
+•  device_id — unique device name/id, e.g., "esp8266-001".
+•  ts — timestamp in UTC, ISO-8601, e.g., "2025-09-30T07:22:15Z".
+•  temp_c — temperature in Celsius, number.
+•  rh — relative humidity in percent (0–100), number.
+•  aqi — Air Quality Index, optional/placeholder (use null/empty if unknown).
 
-web_page：http://192.168.0.106/  
-JSON：http://192.168.0.106/api/metrics  
-upload_port = COM[6]
+# this interface need optimizing 
+<img width="803" height="407" alt="image" src="https://github.com/user-attachments/assets/040424f0-b80a-474d-b62a-526cc7766c74" />
+website use inserted react and  I have left an interface for cloud database
+<img width="1100" height="185" alt="image" src="https://github.com/user-attachments/assets/657ed534-bf89-4b58-84e2-4da94a26a9e5" />
+
+<img width="1181" height="221" alt="image" src="https://github.com/user-attachments/assets/33866782-cf59-431f-ba4e-b8505cf084b2" />
