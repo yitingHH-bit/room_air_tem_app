@@ -1,4 +1,8 @@
+
 # room_air_tem_app
+
+<img width="599" height="497" alt="image" src="https://github.com/user-attachments/assets/45a97b84-9153-4988-8bff-7b8429959bf1" />
+
 # protocal:
 # device_id — unique device name/id, e.g., "esp8266-001".
 # ts — timestamp in UTC, ISO-8601, e.g., "2025-09-30T07:22:15Z".
